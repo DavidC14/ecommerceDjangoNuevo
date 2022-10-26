@@ -11,40 +11,45 @@
     <title>Document</title>
 </head>
 <body>
-
     
-        {% block content %}
-        <main>
-            {% for product in products %}
-            <div class="product_card">
-
-                <img src={{product.image_prod.url}} alt="">
-                <p class="product">{{product}}</p>
-                <p>${{product.precio_prod}}</p>
-                <form action="{% url 'addCart' product.id %}">
-                    {% csrf_token %}
-                    <input type="number" name="cant" id="cant" min="1" max="10">
-                    <button>
-                        Comprar
-                    </button>
-                </form>
-                {% if user.is_staff %}
-                <form action="{% url 'delete_prod' product.nom_prod %}" method="POST">
-                    {% csrf_token %}
-                    <button>
-                        Borrar
-                    </button>
-                </form>
-                {% endif %}
-            
-                
-                
-            </div>
-            {% endfor %}
-            
-        </main>
-        {% endblock %}
-   
     
+    
+    {% block content %}
+    <main>
+        {% for product in products %}
+        <div class="product_card">
+            
+            <img src={{product.image_prod.url}} alt="">
+            <p class="product">{{product}}</p>
+            <p>${{product.precio_prod}}</p>
+            <form action="{% url 'addCart' product.id %}">
+                {% csrf_token %}
+                <input type="number" name="cant" id="cant" min="1" max="10">
+                
+                <button>
+                    Comprar
+                </button>
+            </form>
+            <button id="restar">-</button>
+            <p id="cant">0</p>
+            <button id="sumar">+</button>
+            {% if user.is_staff %}
+            <form action="{% url 'delete_prod' product.nom_prod %}" method="POST">
+                {% csrf_token %}
+                <button>
+                    Borrar
+                </button>
+            </form>
+            {% endif %}
+            
+            
+            
+        </div>
+        {% endfor %}
+        
+    </main>
+    {% endblock %}
+    
+
 </body>
 </html>

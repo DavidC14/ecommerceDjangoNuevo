@@ -122,7 +122,7 @@ def contacto(request):
 
             send_mail(inForm['asunto'], inForm['mensaje'], inForm.get('email', ''), ['davidarechagaippolito@gmail.com'],)
 
-            return render(request, "gracias.html")
+            return render(request, "buy")
     else:
 
         miFormulario=forms.FormularioContacto()
