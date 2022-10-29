@@ -116,7 +116,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'ecommerceProject/ecommerce/static/'
+STATIC_URL = 'static/'
 LOGIN_URL = '/signin'
 
 # Default primary key field type
@@ -125,9 +125,8 @@ LOGIN_URL = '/signin'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'media')
+MEDIA_ROOT = '/media/'
 
-MEDIA_URL = '/photos/'
 
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST="smtp.gmail.com"

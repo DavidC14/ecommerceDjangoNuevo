@@ -13,8 +13,6 @@ from ecommerce import models
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'home.html')
 
 def signup(request):
     if request.method == 'GET':
@@ -42,7 +40,7 @@ def signup(request):
 @login_required
 def signout(request):
     logout(request)
-    return redirect('home')
+    return redirect('/')
 
 
 def signin(request):
@@ -60,7 +58,7 @@ def signin(request):
             })
         else:
             login(request, user)
-            return redirect('home')
+            return redirect('/')
         
     
 @login_required
@@ -73,10 +71,10 @@ def addStock(request):
         print(request.POST)
         print(models.categorias.objects.get(id=request.POST['categoria']))
 
-        stockProducts.objects.create(image_prod=request.POST['image_prod'], nom_prod=request.POST['nom_prod'], cant_prod=request.POST['cant_prod'], precio_prod=request.POST['precio_prod'], descripcion=request.POST['descripcion'],
+        stockProducts.objects.create(thumbnail=request.POST['thumbnail'], nom_prod=request.POST['nom_prod'], cant_prod=request.POST['cant_prod'], precio_prod=request.POST['precio_prod'], descripcion=request.POST['descripcion'],
         categoria=models.categorias.objects.get(id=request.POST['categoria']))
 
-        return redirect('buy')
+        return redirect('/')
 
 
 @login_required
@@ -101,7 +99,7 @@ def delete_prod(request, prod):
     if request.method == 'POST':
         
         product.delete()
-        return redirect('buy')
+        return redirect('/')
 
 def addCart(request, prod):
     cantidad = request.GET.get("cant")
@@ -109,7 +107,7 @@ def addCart(request, prod):
     
     carrito.objects.create(nom_prod = product.nom_prod, cant_prod=int(cantidad), precio_prod = product.precio_prod*int(cantidad))
     
-    return redirect('buy')
+    return redirect('/carrito')
 
 def contacto(request):
     
@@ -122,7 +120,7 @@ def contacto(request):
 
             send_mail(inForm['asunto'], inForm['mensaje'], inForm.get('email', ''), ['davidarechagaippolito@gmail.com'],)
 
-            return render(request, "buy")
+            return render(request, "buy.html")
     else:
 
         miFormulario=forms.FormularioContacto()
@@ -143,3 +141,18 @@ def cart(request):
     })
 
     
+@login_required 
+@staff_member_required
+def deleteFromCart(request, prod):
+    
+    product = get_object_or_404(carrito, nom_prod=prod)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('/carrito')
+
+
+def product_detail(request, id):
+    product = stockProducts.objects.get(pk=id)
+    return render(request, 'product_detail.html',{
+        'data': product
+    })

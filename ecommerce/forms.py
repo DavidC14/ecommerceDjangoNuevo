@@ -4,7 +4,7 @@ from .models import stockProducts
 class stockForm(ModelForm):
     class Meta:
         model = stockProducts
-        fields = ['image_prod','nom_prod', 'cant_prod', 'precio_prod', 'descripcion', 'categoria']
+        fields = ['thumbnail','nom_prod', 'cant_prod', 'precio_prod', 'descripcion', 'categoria']
 
 class FormularioContacto(forms.Form):
 

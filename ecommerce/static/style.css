@@ -72,3 +72,20 @@ form{
     
     
 } 
+
+.product_card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 15px;
+    border: 1px solid black;
+}
+
+.product_card:hover{
+    box-shadow: 0 0 .1rem 1px #000;
+}

@@ -16,13 +16,13 @@
     
     {% block content %}
     <main>
-        {% for product in products %}
-        <a href="{% url 'product_detail' product.id  %}" class="product_card">
+       
+        <div >
             
-            <img src={{product.thumbnail.url}} alt="">
-            <p class="product">{{product}}</p>
-            <p>${{product.precio_prod}}</p>
-            {% comment %} <form action="{% url 'addCart' product.id %}">
+            <p>{{data.nom_prod}}</p>
+            <p>${{data.precio_prod}}</p>
+            <p>{{data.descripcion}}</p>
+            <form action="{% url 'addCart' data.id %}">
                 {% csrf_token %}
                 <input type="number" name="cant" id="cant" min="1" max="10">
                 
@@ -32,18 +32,18 @@
             </form>
             
             {% if user.is_staff %}
-            <form action="{% url 'delete_prod' product.nom_prod %}" method="POST">
+            <form action="{% url 'delete_prod' data.nom_prod %}" method="POST">
                 {% csrf_token %}
                 <button>
-                    Borrar<
+                    Borrar
                 </button>
             </form>
-            {% endif %} {% endcomment %}
+            {% endif %}
             
             
             
-        </a>
-        {% endfor %}
+        </div>
+    
         
     </main>
     {% endblock %}

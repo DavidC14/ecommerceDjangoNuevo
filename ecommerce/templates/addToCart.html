@@ -16,8 +16,16 @@
         
         {% for prod in prods %}
             <p>{{prod.nom_prod}}</p>
+            <form action="{% url 'deleteFromCart' prod.nom_prod %}" method="POST">
+                {% csrf_token %}
+                <button>
+                    Borrar
+                </button>
+            </form>
         {% endfor %}
-    <p>Total: {{total}}</p>
+    {% if total != 0%}
+        <p>Total: {{total}}</p> 
+    {% endif %}
     {% endblock content %}
         
 </body>
