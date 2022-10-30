@@ -19,26 +19,10 @@
         {% for product in products %}
         <a href="{% url 'product_detail' product.id  %}" class="product_card">
             
-            <img src={{product.thumbnail.url}} alt="">
+            <img src={{product.thumbnail.url}} alt="" class="imagen_buy">
             <p class="product">{{product}}</p>
             <p>${{product.precio_prod}}</p>
-            {% comment %} <form action="{% url 'addCart' product.id %}">
-                {% csrf_token %}
-                <input type="number" name="cant" id="cant" min="1" max="10">
-                
-                <button>
-                    Agregar al carrito
-                </button>
-            </form>
-            
-            {% if user.is_staff %}
-            <form action="{% url 'delete_prod' product.nom_prod %}" method="POST">
-                {% csrf_token %}
-                <button>
-                    Borrar<
-                </button>
-            </form>
-            {% endif %} {% endcomment %}
+           
             
             
             

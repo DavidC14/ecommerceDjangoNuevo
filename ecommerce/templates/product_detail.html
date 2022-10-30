@@ -18,7 +18,8 @@
     <main>
        
         <div >
-            
+            <img src="{{data.thumbnail.url}}" alt="" class="imagen_buy">
+            <p>{{error}}</p>
             <p>{{data.nom_prod}}</p>
             <p>${{data.precio_prod}}</p>
             <p>{{data.descripcion}}</p>
@@ -38,6 +39,7 @@
                     Borrar
                 </button>
             </form>
+            
             {% endif %}
             
             

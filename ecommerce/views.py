@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
@@ -13,7 +11,8 @@ from ecommerce import models
 
 # Create your views here.
 
-
+def home(request):
+    return render(request, 'home.html')
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html',{
@@ -71,10 +70,10 @@ def addStock(request):
         print(request.POST)
         print(models.categorias.objects.get(id=request.POST['categoria']))
 
-        stockProducts.objects.create(thumbnail=request.POST['thumbnail'], nom_prod=request.POST['nom_prod'], cant_prod=request.POST['cant_prod'], precio_prod=request.POST['precio_prod'], descripcion=request.POST['descripcion'],
+        stockProducts.objects.create(thumbnail = request.FILES['thumbnail'], nom_prod=request.POST['nom_prod'], precio_prod=request.POST['precio_prod'], descripcion=request.POST['descripcion'],
         categoria=models.categorias.objects.get(id=request.POST['categoria']))
 
-        return redirect('/')
+        return redirect('buy')
 
 
 @login_required
@@ -87,6 +86,7 @@ def buy(request):
         stock = stockProducts.objects.filter(
             nom_prod__icontains = busqueda
         )
+    
     return render(request, 'buy.html', {
         'products' : stock
     })
@@ -104,10 +104,23 @@ def delete_prod(request, prod):
 def addCart(request, prod):
     cantidad = request.GET.get("cant")
     product = get_object_or_404(stockProducts, pk=prod)
+    products = carrito.objects.all()
     
-    carrito.objects.create(nom_prod = product.nom_prod, cant_prod=int(cantidad), precio_prod = product.precio_prod*int(cantidad))
+    if cantidad:
+        # if product in products:    
+            carrito.objects.create(nom_prod = product.nom_prod, cant_prod=int(cantidad), precio_prod = product.precio_prod*int(cantidad))
+        # else:
+        #     prod = carrito.objects.get(pk=prod)
+        #     print('jajajaj' + prod)
+        #     prod.cant_prod += int(cantidad)
+        #     prod.save()
+    else:
+        return render(request, "product_detail.html",{
+            'data':product,
+            'error': 'No se eligio una cantidad'
+        })    
     
-    return redirect('/carrito')
+    return redirect('cart')
 
 def contacto(request):
     
@@ -148,7 +161,7 @@ def deleteFromCart(request, prod):
     product = get_object_or_404(carrito, nom_prod=prod)
     if request.method == 'POST':
         product.delete()
-        return redirect('/carrito')
+        return redirect('cart')
 
 
 def product_detail(request, id):
@@ -156,3 +169,4 @@ def product_detail(request, id):
     return render(request, 'product_detail.html',{
         'data': product
     })
+

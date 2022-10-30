@@ -89,3 +89,7 @@ form{
 .product_card:hover{
     box-shadow: 0 0 .1rem 1px #000;
 }
+
+.imagen_buy{
+    width: 70px;
+}

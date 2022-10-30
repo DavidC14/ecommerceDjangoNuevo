@@ -16,6 +16,7 @@
         
         {% for prod in prods %}
             <p>{{prod.nom_prod}}</p>
+            <p>{{prod.cant_prod}}</p>
             <form action="{% url 'deleteFromCart' prod.nom_prod %}" method="POST">
                 {% csrf_token %}
                 <button>
