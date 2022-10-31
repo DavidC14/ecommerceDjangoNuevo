@@ -8,7 +8,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .models import stockProducts, carrito
 from . import forms
 from ecommerce import models
-
+import operator
 # Create your views here.
 
 def home(request):
@@ -62,6 +62,7 @@ def signin(request):
     
 @login_required
 def addStock(request):
+  
     if request.method == 'GET':
         return render(request, 'addProduct.html', {
             'form' : forms.stockForm
@@ -79,8 +80,9 @@ def addStock(request):
 @login_required
 def buy(request):
     busqueda = request.GET.get("buscar")
-
+      
     stock = stockProducts.objects.all()
+  
 
     if busqueda:
         stock = stockProducts.objects.filter(
@@ -101,11 +103,11 @@ def delete_prod(request, prod):
         product.delete()
         return redirect('/')
 
+@login_required
 def addCart(request, prod):
     cantidad = request.GET.get("cant")
-    product = get_object_or_404(stockProducts, pk=prod)
-    products = carrito.objects.all()
-    
+    product = get_object_or_404(stockProducts, nom_prod=prod)
+   
     if cantidad:
         # if product in products:    
             carrito.objects.create(nom_prod = product.nom_prod, cant_prod=int(cantidad), precio_prod = product.precio_prod*int(cantidad))
@@ -139,14 +141,13 @@ def contacto(request):
         miFormulario=forms.FormularioContacto()
     
     return render(request, "formulario_contacto.html", {"form":miFormulario})
-
+@login_required
 def cart(request):
     total = 0
     prods = carrito.objects.all()
     for prod in prods:
         total += prod.precio_prod
-    print(total)
-    print(prods)
+    
     
     return render(request, 'addToCart.html',{
         'prods': prods,
@@ -163,10 +164,24 @@ def deleteFromCart(request, prod):
         product.delete()
         return redirect('cart')
 
-
+@login_required
 def product_detail(request, id):
     product = stockProducts.objects.get(pk=id)
     return render(request, 'product_detail.html',{
         'data': product
     })
 
+@staff_member_required
+def update_stock(request, prod):
+    product = get_object_or_404(stockProducts, nom_prod=prod)
+
+    product.hayStock = operator.not_(product.hayStock)
+    product.save()
+    
+
+    return redirect('buy')
+
+
+# Falta:
+# 1. cambiar como se pone cantidad a comprar
+# 2. No poder agregar un mismo producto al carrito

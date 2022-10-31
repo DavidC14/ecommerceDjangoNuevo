@@ -23,14 +23,18 @@
             <p>{{data.nom_prod}}</p>
             <p>${{data.precio_prod}}</p>
             <p>{{data.descripcion}}</p>
-            <form action="{% url 'addCart' data.id %}">
-                {% csrf_token %}
-                <input type="number" name="cant" id="cant" min="1" max="10">
-                
-                <button>
-                    Agregar al carrito
-                </button>
-            </form>
+            {% if data.hayStock %}
+                <form action="{% url 'addCart' data.nom_prod %}">
+                    {% csrf_token %}
+                    <input type="number" name="cant" id="cant" min="1" max="10">
+                    
+                    <button>
+                        Agregar al carrito
+                    </button>
+                </form>
+            {% else %}
+                <p>No hay stock</p>
+            {% endif %}
             
             {% if user.is_staff %}
             <form action="{% url 'delete_prod' data.nom_prod %}" method="POST">
@@ -38,6 +42,15 @@
                 <button>
                     Borrar
                 </button>
+            </form>
+
+            <form action="{% url 'update_stock' data.nom_prod %}" method='POST'>
+                {% csrf_token %}
+                {% if data.hayStock %}
+                    <button>No hay stock</button>
+                {% else %}
+                    <button>Hay stock</button>
+                {% endif %}
             </form>
             
             {% endif %}

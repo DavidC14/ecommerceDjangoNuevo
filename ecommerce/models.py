@@ -18,6 +18,7 @@ class stockProducts(models.Model):
     precio_prod = models.FloatField()   
     descripcion = models.TextField(max_length=250)
     categoria = models.ForeignKey(categorias, on_delete=models.CASCADE)
+    hayStock = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return self.nom_prod
