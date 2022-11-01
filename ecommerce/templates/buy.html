@@ -17,16 +17,42 @@
     {% block content %}
     <main>
         {% for product in products %}
-        <a href="{% url 'product_detail' product.id  %}" class="product_card">
+        {% if product.hayStock %}
             
-            <img src={{product.thumbnail.url}} alt="" class="imagen_buy">
-            <p class="product">{{product}}</p>
-            <p>${{product.precio_prod}}</p>
-           
+
+            <a href="{% url 'product_detail' product.id  %}" class="product_card">
+                
+                <img src={{product.thumbnail.url}} alt="" class="imagen_buy">
+                <p class="product">{{product}}</p>
+                <p>${{product.precio_prod}}</p>
             
-            
-            
-        </a>
+                
+                
+                
+            </a>
+
+
+        {% else %}
+            {% if user.is_staff %}
+                <a href="{% url 'product_detail' product.id  %}" class="product_card">          
+                    <img src={{product.thumbnail.url}} alt="" class="imagen_buy">
+                    <p class="product">{{product}}</p>
+                    <p>${{product.precio_prod}}</p>
+                </a>
+            {% else %}
+                <div>
+                    <img src={{product.thumbnail.url}} alt="" class="imagen_buy">
+                    <p class="product">{{product}}</p>
+                    <p>${{product.precio_prod}}</p>
+                    <p>NO HAY STOCK</p>
+                </div>
+            {% endif %}
+
+
+        {% endif %}
+
+
+
         {% endfor %}
         
     </main>

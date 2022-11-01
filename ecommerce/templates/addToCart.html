@@ -16,7 +16,7 @@
     <main>
 
         {% for prod in prods %}
-           
+            
             <p>{{prod.nom_prod}}</p>
             <p>{{prod.cant_prod}}</p>
             <form action="{% url 'deleteFromCart' prod.nom_prod %}" method="POST">
@@ -28,11 +28,13 @@
         {% endfor %}
         {% if total != 0%}
             <p>Total: {{total}}</p> 
+            <button>
+                Pagar
+            </button>
+        {% else %}
+            <h1>EL CARRITO ESTA VACIO</h1>
         {% endif %}
 
-        <button>
-            Pagar
-        </button>
     </main>
     {% endblock content %}
         

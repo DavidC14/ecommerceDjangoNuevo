@@ -105,17 +105,24 @@ def delete_prod(request, prod):
 
 @login_required
 def addCart(request, prod):
+    ArrayProductos = []
     cantidad = request.GET.get("cant")
     product = get_object_or_404(stockProducts, nom_prod=prod)
-   
+    products = carrito.objects.all()
+    print(product)
+    print(products)
+    for i in products:
+        ArrayProductos.append(i.nom_prod)
+
     if cantidad:
-        # if product in products:    
+        if product.nom_prod in ArrayProductos:
+            p = carrito.objects.get(nom_prod=prod)
+            p.cant_prod += int(cantidad)
+            p.precio_prod += p.precio_prod*int(cantidad)
+            p.save()
+        else:
             carrito.objects.create(nom_prod = product.nom_prod, cant_prod=int(cantidad), precio_prod = product.precio_prod*int(cantidad))
-        # else:
-        #     prod = carrito.objects.get(pk=prod)
-        #     print('jajajaj' + prod)
-        #     prod.cant_prod += int(cantidad)
-        #     prod.save()
+       
     else:
         return render(request, "product_detail.html",{
             'data':product,
@@ -141,6 +148,7 @@ def contacto(request):
         miFormulario=forms.FormularioContacto()
     
     return render(request, "formulario_contacto.html", {"form":miFormulario})
+
 @login_required
 def cart(request):
     total = 0
@@ -180,8 +188,3 @@ def update_stock(request, prod):
     
 
     return redirect('buy')
-
-
-# Falta:
-# 1. cambiar como se pone cantidad a comprar
-# 2. No poder agregar un mismo producto al carrito
