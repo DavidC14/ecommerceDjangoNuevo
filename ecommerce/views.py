@@ -109,6 +109,7 @@ def paypal(request):
 
 def home(request):
     return render(request, 'home.html')
+    
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html',{

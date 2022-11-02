@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +23,7 @@
                 Iniciar
             </button>
         </form>    
+        <a href="{% provider_login_url 'google' %}">Google</a>
     </main>
 
     {% endblock %}
