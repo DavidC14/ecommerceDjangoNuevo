@@ -16,7 +16,7 @@ urlpatterns = [
     path('cart/update/<str:prod>', views.update_stock, name="update_stock"),
     path('contacto/', views.contacto, name="contacto"),
     path('product/<int:id>', views.product_detail, name="product_detail"),
-    path('paypal/', views.hola, name="paypal.urls"),
+    path('paypal/', views.paypal, name="paypal"),
      path('pago/', views.pago, name="pago"),
 ]
 

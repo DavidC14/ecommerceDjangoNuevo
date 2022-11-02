@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 
     <script>
         function token(name) {
@@ -26,7 +29,9 @@
     </script>
 </head>
 <body>
-    <h1>Integracion paypal django</h1>
+
+    {% block content %}
+   
 
     <div id="paypal-button-container"></div>
     <script src="https://www.paypal.com/sdk/js?client-id=AVuJsj71tA1V4cwBpLWi1t8KSlZVZ6xy3RLOwWcHPYqoZR7UYT4M24II899EoqDKOmSnV4GN53OvuauP
@@ -38,7 +43,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value:'0.01'
+                            value:'{{total}}'
                         }
                     }]
                 });
@@ -63,6 +68,6 @@
         }).render('#paypal-button-container');
 
     </script>
-
+    {% endblock %}
 </body>
 </html>

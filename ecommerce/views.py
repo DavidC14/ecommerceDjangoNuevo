@@ -105,8 +105,15 @@ if __name__ == "__main__":
 
 
 
-def hola(request):
-    return render(request, 'paypal.html')
+def paypal(request):
+    total = 0
+
+    prods = carrito.objects.all()
+    for prod in prods:
+        total += prod.precio_prod
+    return render(request, 'paypal.html',{
+        'total':total
+    })
 
 def home(request):
     return render(request, 'home.html')
