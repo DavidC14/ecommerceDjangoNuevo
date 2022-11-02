@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function token(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = token('csrftoken');
+    </script>
+</head>
+<body>
+    <h1>Integracion paypal django</h1>
+
+    <div id="paypal-button-container"></div>
+    <script src="https://www.paypal.com/sdk/js?client-id=AVuJsj71tA1V4cwBpLWi1t8KSlZVZ6xy3RLOwWcHPYqoZR7UYT4M24II899EoqDKOmSnV4GN53OvuauP
+    "></script>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions){
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value:'0.01'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data) {
+                return fetch('/pago/', {
+                    method: 'POST',
+                    headers: {
+                    'content-type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({
+                    orderID: data.orderID
+                    })
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(details) {
+                    alert('Transaction approved by ' + details.payer_given_name);
+
+                })
+            }
+        }).render('#paypal-button-container');
+
+    </script>
+
+</body>
+</html>
