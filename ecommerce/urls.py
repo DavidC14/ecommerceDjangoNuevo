@@ -17,6 +17,6 @@ urlpatterns = [
     path('contacto/', views.contacto, name="contacto"),
     path('product/<int:id>', views.product_detail, name="product_detail"),
     path('paypal/', views.paypal, name="paypal"),
-     path('pago/', views.pago, name="pago"),
+
 ]
 
