@@ -224,10 +224,13 @@ def preCompra(request):
 def verPedidos(request):
     ventas = pedidos.objects.all()
     totalPedidos = pedidos.objects.all().count()
+    totalCliente = User.objects.all().count()
     return render(request, 'pedidosTotales.html',{
         'pedidos': ventas,
-        'total': totalPedidos
+        'total': totalPedidos,
+        'totalCliente': totalCliente
     })
+
 
 def eliminarPedido(request, pedido):
     venta = pedidos.objects.get(pk = pedido)
