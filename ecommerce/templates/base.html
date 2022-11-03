@@ -22,6 +22,7 @@
             
             {% if user.is_staff %}
                 <li class="base_li"><a href="{% url 'addStock' %}" class="base_a">Agregar producto</a></li>
+                <li class="base_li"><a href="{% url 'verPedidos' %}" class="base_a">Ver pedidos</a></li>
             {% endif %}
                 <li class="base_li"><a href="{% url 'buy' %}" class="base_a">Comprar</a></li>
                 <li class="base_li"><a href="{% url 'cart' %}" class="base_a">Carrito</a></li>

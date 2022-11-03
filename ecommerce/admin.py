@@ -4,3 +4,4 @@ from . import models
 admin.site.register(models.stockProducts)
 admin.site.register(models.categorias)
 admin.site.register(models.carrito)
+admin.site.register(models.pedidos)

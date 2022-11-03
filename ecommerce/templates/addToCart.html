@@ -16,7 +16,7 @@
     <main>
 
         {% for prod in prods %}
-            
+            <img src={{prod.foto.url}} alt="" class="imagen_buy">
             <p>{{prod.nom_prod}}</p>
             <p>{{prod.cant_prod}}</p>
             <form action="{% url 'deleteFromCart' prod.nom_prod %}" method="POST">
@@ -28,10 +28,14 @@
         {% endfor %}
         {% if total != 0%}
             <p>Total: {{total}}</p> 
-            <form action="{% url 'paypal' %}">
+            <form action="{% url 'delete_all' %}" method="POST">
+                {% csrf_token %}
+                <button>Vaciar carrito</button>
+            </form>
+            <form action="{% url 'preCompra' %}">
 
                 <button>
-                    Pagar
+                    Siguiente
                 </button>
             </form>
         {% else %}

@@ -16,6 +16,14 @@
     
     {% block content %}
     <main>
+        <p>Filtrar</p>
+        {% for cat in categorias %}
+            <form action="{% url 'filtrar' cat.id %}" method="POST">
+                {% csrf_token %}
+                <a href="{% url 'filtrar' cat.id %}">{{cat}}</a>
+
+            </form>
+        {% endfor %}
         {% for product in products %}
         {% if product.hayStock %}
             

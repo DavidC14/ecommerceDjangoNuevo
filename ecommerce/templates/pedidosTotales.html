@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    
+    
+    {% block content %}
+        {% for pedido in pedidos %}
+            <div class="cardPedido">
+                <p>{{pedido.nombre}}</p>
+                <p>{{pedido.DNI}}</p>
+                <p>{{pedido.telefono}}</p>
+                <p>{{pedido.total}}</p>
+                <form action="{% url 'eliminarPedido' pedido.id %}" method="POST">
+                    {% csrf_token %}
+                    <button>
+                        Eliminar
+                    </button>
+                </form>
+            </div>
+        {% endfor %}
+        {% if total != 0 %}
+            <p>Total pedidos: {{total}}</p>
+        {% else %}
+            <h1>NO HAY PEDIDOS</h1>
+        {% endif %}
+    {% endblock content %}
+        
+</body>
+</html>
