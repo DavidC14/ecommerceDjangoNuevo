@@ -174,7 +174,7 @@ def contacto(request):
 @login_required
 def cart(request):
     total = 0
-    prods = carrito.objects.all().filter(user = request.user)
+    prods = carrito.objects.all()
     for prod in prods:
         total += prod.precio_prod
     
@@ -186,7 +186,6 @@ def cart(request):
 
     
 @login_required 
-@staff_member_required
 def deleteFromCart(request, prod):
     
     product = get_object_or_404(carrito, nom_prod=prod)
