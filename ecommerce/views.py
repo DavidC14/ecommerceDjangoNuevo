@@ -139,7 +139,7 @@ def addCart(request, prod):
             p.precio_prod += p.precio_prod*int(cantidad)
             p.save()
         else:
-            carrito.objects.create(foto = product.thumbnail, nom_prod = product.nom_prod, cant_prod=int(cantidad), precio_prod = product.precio_prod*int(cantidad), prod = product)
+            carrito.objects.create(foto = product.thumbnail, nom_prod = product.nom_prod, cant_prod=int(cantidad), precio_prod = product.precio_prod*int(cantidad), prod = product, user = request.user)
        
     else:
         return render(request, "product_detail.html",{
@@ -174,7 +174,7 @@ def contacto(request):
 @login_required
 def cart(request):
     total = 0
-    prods = carrito.objects.all()
+    prods = carrito.objects.all().filter(user = request.user)
     for prod in prods:
         total += prod.precio_prod
     
@@ -225,13 +225,18 @@ def verPedidos(request):
     ventas = pedidos.objects.all()
     totalPedidos = pedidos.objects.all().count()
     totalCliente = User.objects.all().count()
+    totalGanancia = 0
+    for i in ventas:
+        totalGanancia += i.total
     return render(request, 'pedidosTotales.html',{
         'pedidos': ventas,
         'total': totalPedidos,
-        'totalCliente': totalCliente
+        'totalCliente': totalCliente,
+        'ganancia': totalGanancia
     })
 
-
+@login_required
+@staff_member_required
 def eliminarPedido(request, pedido):
     venta = pedidos.objects.get(pk = pedido)
     if request.method == 'POST':
@@ -239,12 +244,14 @@ def eliminarPedido(request, pedido):
         venta.delete()
     return redirect('/')
 
+@login_required
 def delete_all(request):
     prods = carrito.objects.all()
     if request.method == 'POST':
         prods.delete()
         return redirect('cart')
 
+@login_required
 def filtrar(request, cat):
     tipo = categorias.objects.get(pk=cat)
     cats = categorias.objects.all()
