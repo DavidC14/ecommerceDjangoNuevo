@@ -28,6 +28,7 @@
                 <li class="base_li"><a href="{% url 'cart' %}" class="base_a">Carrito</a></li>
             {% if user.is_authenticated %}
                 <li class="base_li"><a href="{% url 'logout' %}" class="base_a">Cerrar sesion</a></li>
+                
             {% else %}
                 <li class="base_li"><a href="{% url 'signup' %}" class="base_a">Registrarse</a></li>
                 <li class="base_li"><a href="{% url 'signin' %}" class="base_a">Iniciar Sesión</a></li>
@@ -35,7 +36,10 @@
              
                 <li class="base_li"><a href="{% url 'contacto' %}" class="base_a">Contacto</a></li>
             
-            
+                <div class="user_data">
+                    <p class="username_user">{{user.username}} {{user.last_name}}</p>
+                    <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" alt="" class="user_logo">
+                </div>
         </ul>
     </nav>
     {% block content %}
