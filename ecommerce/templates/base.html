@@ -26,9 +26,9 @@
             {% endif %}
                 <li class="base_li"><a href="{% url 'buy' %}" class="base_a">Comprar</a></li>
                 <li class="base_li"><a href="{% url 'cart' %}" class="base_a">Carrito</a></li>
+
             {% if user.is_authenticated %}
                 <li class="base_li"><a href="{% url 'logout' %}" class="base_a">Cerrar sesion</a></li>
-                
             {% else %}
                 <li class="base_li"><a href="{% url 'signup' %}" class="base_a">Registrarse</a></li>
                 <li class="base_li"><a href="{% url 'signin' %}" class="base_a">Iniciar Sesión</a></li>
@@ -44,5 +44,12 @@
     </nav>
     {% block content %}
     {% endblock %}
+
+    {% if user.is_authenticated %}
+        <li><a href="">Cerrar sesion</a></li>
+    {% else %}
+        <li><a href="">Registrarse</a></li>
+        <li><a href="">Iniciar Sesión</a></li>
+    {% endif %}
 </body>
 </html>

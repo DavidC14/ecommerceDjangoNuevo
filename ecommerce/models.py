@@ -39,7 +39,9 @@ class pedidos(models.Model):
     DNI = models.IntegerField()
     telefono = models.IntegerField()
     total = models.FloatField()
-    
+
+
+
 # class Compra(models.Model):
 #     id = models.CharField(primary_key= True, max_length=100)
 #     estado = models.CharField(max_length=100, null=True)

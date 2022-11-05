@@ -19,9 +19,11 @@
             {% csrf_token %}
             {{form}}
             <button>
-                Iniciar Sesión
+                Registrarse
             </button>
         </form>
+
+        <p>Si ya estas registrado<a href="{% url 'signin' %}">inicia sesion</a></p>
     </main>
 
         
