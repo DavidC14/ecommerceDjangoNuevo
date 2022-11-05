@@ -34,7 +34,7 @@
    
 
     <div id="paypal-button-container"></div>
-    <script src="https://www.paypal.com/sdk/js?client-id=AVuJsj71tA1V4cwBpLWi1t8KSlZVZ6xy3RLOwWcHPYqoZR7UYT4M24II899EoqDKOmSnV4GN53OvuauP
+    <script src="https://www.paypal.com/sdk/js?client-id=AZEr3NvMIdU0MhJt9Y0GNfb6BTP4FJyCWg6uOrV_QC9SK2QrgZMndjjdVknM-lfA5-J9LeRP4pKvhaCb
     "></script>
 
     <script>
@@ -48,22 +48,10 @@
                     }]
                 });
             },
-            onApprove: function(data) {
-                return fetch('/pago/', {
-                    method: 'POST',
-                    headers: {
-                    'content-type': 'application/json',
-                    'X-CSRFToken': csrftoken,
-                    },
-                    body: JSON.stringify({
-                    orderID: data.orderID
-                    })
-                }).then(function(res) {
-                    return res.json();
-                }).then(function(details) {
-                    alert('Transaction approved by ' + details.payer_given_name);
-
-                })
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details){
+                    alert(details.payer.name.given_name)
+                });
             }
         }).render('#paypal-button-container');
 
