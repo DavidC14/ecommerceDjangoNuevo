@@ -40,3 +40,15 @@ class pedidos(models.Model):
     telefono = models.IntegerField()
     total = models.FloatField()
     
+# class Compra(models.Model):
+#     id = models.CharField(primary_key= True, max_length=100)
+#     estado = models.CharField(max_length=100, null=True)
+#     codigo_estado = models.CharField(max_length=100, null=True)
+#     # producto = models.ForeignKey(to=carrito, on_delete= models.SET_NULL, null = True),
+#     total_de_la_compra= models.DecimalField(max_digits=5 ,decimal_places=2, null=True)
+#     nombre_cliente = models.CharField(max_length=100, null=True)
+#     apellido_cliente=models.CharField(max_length=100, null=True)
+#     correo_cliente = models.EmailField(max_length=100, null=True)
+#     direccion_cliente = models.CharField(max_length=100, null=True)
+#     def _str_(self):
+#         return self.nombre_cliente
