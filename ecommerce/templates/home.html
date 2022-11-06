@@ -1,24 +1,42 @@
 
+<!-- {% extends 'base.html' %} -->
 
-{% extends 'base.html' %}
 {% load static %}
-
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    {% block content %}
-    <main>
+    <title>Bagual</title>
+  </head>
+  <body>
+    
+    <!-- {% block content %} -->
 
-        <h1 class="title">Ecommerce</h1>
+    
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+
+    <main class="landing-main">
+      <h1>BAGUAL</h1>
+      <a href="#grilla">
+        <img src="{% static 'arrowdown.svg' %}" alt="" />
+      </a>
     </main>
-    {% endblock %}
-</body>
+    <div id="grilla" class="landing-grilla-menu">
+      <div class="stock"><a href="{% url 'buy' %}">STOCK</a></div>
+      <div class="aboutus"><a href="">ABOUT US</a></div>
+      <div class="contact"><a href="">CONTACTO</a></div>
+      {% if user.is_authenticated %}
+      <div class="login"><a href="{% url 'logout' %}">LOG OUT</a></div>
+      {% else %}
+      <div class="login"><a href="{% url 'signin' %}">LOG IN</a></div>
+      {% endif%}
+      <div class="singup"><a href="{% url 'signup' %}">SING UP</a></div>
+    </div>
+
+    
+    <!-- {% endblock %} -->
+  </body>
 </html>

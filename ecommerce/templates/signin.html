@@ -1,4 +1,3 @@
-{% extends "base.html" %}
 {% load static %}
 {% load socialaccount %}
 {% providers_media_js %}
@@ -8,24 +7,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'singin.css' %}">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     
-    {% block content %}
-    <main>
-        {{error}}
-        <form action="/signin/" method="POST">
+    <main class="main-singin">
+        <!-- <h1>Sign In</h1> -->
+        <form action="/signin/" method="POST" class="form-singin">
             {% csrf_token %}
-            {{form}}
+
+            <img src="{% static 'profile.svg' %}" alt="profile img" class="profile-img">
+            <div class="input-div">
+                <img src="{% static 'user.svg' %}" alt="">
+                <input placeholder="Username" type="text" name="username" id="username">
+            </div>
+            <div class="input-div">
+
+                <img src="{% static 'lock.svg' %}" alt="">
+                <input placeholder="Password" type="password" name="password" id="password">
+            </div>
+
+
             <button>
-                Iniciar
+                Iniciar Sesion
             </button>
+            <a href="{% provider_login_url 'google' %}" class="google-btn">
+                <img src="{% static 'google.png' %}" alt="Google Image">
+                <span>Sign in with Google</span>
+            </a>
         </form>    
-        <a href="{% provider_login_url 'google' %}">Google</a>
     </main>
 
-    {% endblock %}
 </body>
 </html>
