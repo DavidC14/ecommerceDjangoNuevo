@@ -74,7 +74,7 @@ def signin(request):
             })
         else:
             login(request, user)
-            return redirect('/')
+            return redirect('/buy')
         
     
 @login_required
@@ -160,10 +160,10 @@ def contacto(request):
 
         if miFormulario.is_valid():
             inForm=miFormulario.cleaned_data
+            print(inForm)
+            # send_mail(inForm['asunto'], inForm['mensaje'], inForm.get('email', ''), ['davidarechagaippolito@gmail.com'],)
 
-            send_mail(inForm['asunto'], inForm['mensaje'], inForm.get('email', ''), ['davidarechagaippolito@gmail.com'],)
-
-            return render(request, "buy.html")
+            return render(request, "formulario_contacto.html")
     else:
 
         miFormulario=forms.FormularioContacto()

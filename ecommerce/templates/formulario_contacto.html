@@ -1,39 +1,62 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    {% block content %}
-    <h1>Contactanos</h1>
-
-    {% if form.errors %}
-
-    <p style="color:red">Revisa este campo</p>
-
-    {% endif %}
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'contacto.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Contacto</title>
+  </head>
+  <body>
     
-    <form action="" method="POST">{% csrf_token %}
-
-        <table>
-
-            {{ form.as_table }}
-
-        </table>
+  {% block content %}
+  <link rel="stylesheet" href="{% static 'contacto.css' %}" />
+    
+    <main class="main-contact">
         
-        <input type="submit" value="Enviar">
+        <form action="" method="POST" class="contact-form">
+          {% csrf_token %}
+          <h1 class="contact-title">Contacto</h1>
+            <div class="input-div">
+          <input type="text" name="asunto" id="asunto" autocomplete="off" />
+          <label for="asunto">Asunto</label>
+        </div>
+        <div class="input-div">
+          <input type="email" name="email" id="email" autocomplete="off" />
+          <label for="email">Email</label>
+        </div>
+        <div class="input-div">
+            <textarea name="mensaje" id="mensaje" cols="30" rows="10"> </textarea>
+            <label for="mensaje">Mensaje</label>
+        </div>
 
-    </form>
+        <input type="button" value="Enviar" />
+      </form>
+    </main>
 
-
+    <script>
+      let lista = $(".input-div");
+      for (const e of lista) {
+        let children = e.children;
+        let input = children[0];
+        let label = children[1];
+        $(input).on("focus", () => {
+          $(label).addClass("focussed");
+        });
+        $(input).on("blur", () => {
+          if (!$.trim($(input).val())) {
+            $(label).removeClass("focussed");
+          }
+        });
+      }
+    </script>
+    
     {% endblock %}
-</body>
+  </body>
+
+  
 </html>

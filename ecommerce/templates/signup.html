@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -7,24 +7,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
 </head>
 <body>
     
-    {% block content %}
-    <main>
-        <h1>Signup</h1>
-        {{error}}
-        <form action="/signup/" method="POST">
+    <main class="main-singin">
+        <form action="/signup/" method="POST" class="form-singin">
             {% csrf_token %}
-            {{form}}
+            <img src="{% static 'profile.svg' %}" alt="profile img" class="profile-img">
+            <div class="input-div">
+                <img src="{% static 'user.svg' %}" alt="">
+                <input placeholder="Username" type="text" name="username" id="username" autocomplete="off">
+            </div>
+            <div class="input-div">
+                <img src="{% static 'lock.svg' %}" alt="">
+                <input placeholder="Password" type="text" name="password1" id="password1" autocomplete="off">
+            </div>
+            <div class="input-div">
+                <img src="{% static 'lock.svg' %}" alt="">
+                <input placeholder="Confirm Password" type="text" name="password2" id="password2" autocomplete="off">
+            </div>
             <button>
-                Iniciar Sesión
+                SIGN UP
             </button>
         </form>
+        {% if error %}
+        <span style="position: absolute;color: red;
+        top: 20px; outline: 1px solid red; border-radius: 10px; padding: 10px;">{{error}}</span>
+        {% endif %}
     </main>
 
         
-    {% endblock %}
 </body>
 </html>

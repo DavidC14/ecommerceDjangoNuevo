@@ -34,12 +34,10 @@
   margin: 5px;
 }
 .main-singin .form-singin .input-div img {
-  position: relative;
-  padding: 2px;
-  top: 0;
-  left: 5px;
-  bottom: 0;
-  width: 32px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 37px;
+  border-right: 1px solid gray;
 }
 .main-singin .form-singin .input-div input {
   font-size: 25px;
@@ -57,6 +55,10 @@
   border: none;
   padding: 5px;
   margin-top: 10px;
+  cursor: pointer;
+}
+.main-singin .form-singin button:hover {
+  box-shadow: 0 0 5px #000;
 }
 .main-singin .google-btn {
   display: flex;
@@ -67,6 +69,9 @@
   width: 100%;
   background: rgb(10, 116, 253);
   text-decoration: none;
+}
+.main-singin .google-btn:hover {
+  box-shadow: 0 0 5px rgb(10, 116, 253);
 }
 .main-singin .google-btn img {
   height: 32px;

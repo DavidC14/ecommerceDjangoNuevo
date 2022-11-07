@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav>
+        <form action="" method="GET">
+
+            <input type="search" name="buscar" id="buscar" placeholder="Buscar productos...">
+            <input type="submit" value="Buscar">
+        </form>
+        <ul>
+            
+        
+
+            
+            {% if user.is_staff %}
+                <li class="base_li"><a href="{% url 'addStock' %}" class="base_a">Agregar producto</a></li>
+                <li class="base_li"><a href="{% url 'verPedidos' %}" class="base_a">Ver pedidos</a></li>
+            {% endif %}
+                <li class="base_li"><a href="{% url 'buy' %}" class="base_a">Comprar</a></li>
+                <li class="base_li"><a href="{% url 'cart' %}" class="base_a">Carrito</a></li>
+            {% if user.is_authenticated %}
+                <li class="base_li"><a href="{% url 'logout' %}" class="base_a">Cerrar sesion</a></li>
+            {% else %}
+                <li class="base_li"><a href="{% url 'signup' %}" class="base_a">Registrarse</a></li>
+                <li class="base_li"><a href="{% url 'signin' %}" class="base_a">Iniciar Sesión</a></li>
+            {% endif %}
+                <li class="base_li"><a href="{% url 'contacto' %}" class="base_a">Contacto</a></li>
+            
+            
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

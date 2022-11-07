@@ -27,13 +27,13 @@
     <div id="grilla" class="landing-grilla-menu">
       <div class="stock"><a href="{% url 'buy' %}">STOCK</a></div>
       <div class="aboutus"><a href="">ABOUT US</a></div>
-      <div class="contact"><a href="">CONTACTO</a></div>
+      <div class="contact"><a href="{% url 'contacto' %}">CONTACT</a></div>
       {% if user.is_authenticated %}
       <div class="login"><a href="{% url 'logout' %}">LOG OUT</a></div>
       {% else %}
       <div class="login"><a href="{% url 'signin' %}">LOG IN</a></div>
       {% endif%}
-      <div class="singup"><a href="{% url 'signup' %}">SING UP</a></div>
+      <div class="singup"><a href="{% url 'signup' %}">SIGN UP</a></div>
     </div>
 
     
