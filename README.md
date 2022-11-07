@@ -9,6 +9,7 @@
 - `pip install django`
 - `pip install paypal-checkout-serversdk`
 - `pip install django-allauth`
+- `pip install pillow`
 #### Puesta en marcha: 
 - `python manage.py runserver`
 #### Funcionalidades del e-commerce:
