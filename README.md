@@ -8,6 +8,7 @@
 #### Se necesitan instalar las siguientes librerias:
 - `pip install django`
 - `pip install paypal-checkout-serversdk`
+- `pop install django-allauth`
 #### Puesta en marcha: 
 - `python manage.py runserver`
 #### Funcionalidades del e-commerce:
