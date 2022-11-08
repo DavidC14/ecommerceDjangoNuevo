@@ -27,12 +27,13 @@
           {% endfor %}
         </ul>
 
-        <div class="searchbar">
-          <input type="text" />
-          <button><img src="{% static 'search.svg' %}" alt="" /></button>
-        </div>
-      </div>
+      
+      <form action="" method="GET" class="searchbar">
 
+        <input type="search" name="buscar" id="buscar">
+        <button><img src="{% static 'search.svg' %}" alt="" /></button>
+      </form>
+      
       <div class="products">
         {% for product in products %} 
         {% if product.hayStock %}

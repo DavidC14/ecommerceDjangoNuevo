@@ -14,7 +14,7 @@ from ecommerce import models
 import operator
 
 
-
+@login_required
 def paypal(request):
     total = 0
     prods = carrito.objects.all()
@@ -119,7 +119,7 @@ def delete_prod(request, prod):
     if request.method == 'POST':
         
         product.delete()
-        return redirect('/')
+        return redirect('buy')
 
 @login_required
 def addCart(request, prod):
