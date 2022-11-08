@@ -41,6 +41,7 @@
   background: transparent;
   padding-left: 10px;
   padding-right: 10px;
+  cursor: pointer;
   border-left: 1px solid rgba(122, 122, 122, 0.226);
 }
 .main-buy .searchbar button img {

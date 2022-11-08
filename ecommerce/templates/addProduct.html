@@ -1,32 +1,109 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="addProduct.css" />
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
     {% block content %}
-    <main>
+    <link rel="stylesheet" href="{% static 'addProduct.css' %}" />
+    <main class="main-addProduct">
+      <form
+        action=""
+        method="POST"
+        enctype="multipart/form-data"
+        class="form-addProduct"
+      >
+        {% csrf_token %}
         <h1>Agregar producto</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form}}
-            <button>
-                Agregar
-            </button>
-        </form>
         
+
+        <label for="id_thumbnail">Seleccione una imagen</label>
+
+        <input
+          type="file"
+          name="thumbnail"
+          accept="image/*"
+          required=""
+          id="id_thumbnail"
+          class="img"
+        />
+
+        <div class="input-div">
+          <input
+            type="text"
+            name="nom_prod"
+            maxlength="50"
+            required=""
+            id="id_nom_prod"
+            autocomplete="off"
+          />
+          <label for="id_nom_prod">Nombre</label>
+        </div>
+
+        <div class="input-div">
+          <input
+            type="number"
+            name="precio_prod"
+            step="any"
+            required=""
+            id="id_precio_prod"
+          />
+          <label for="id_precio_prod">Precio</label>
+        </div>
+
+        <div class="input-div input-div-textarea">
+          <textarea
+            name="descripcion"
+            cols="40"
+            rows="10"
+            maxlength="250"
+            required=""
+            id="id_descripcion"
+          ></textarea>
+          <label for="id_descripcion">Descripcion</label>
+        </div>
+
+        <!-- <label for="id_categoria">Categoria:</label> -->
+
+        <select name="categoria" required="" id="id_categoria">
+          <option value="" selected="">CATEGORIA</option>
+
+          <option value="1">bolsos</option>
+
+          <option value="2">carteras</option>
+
+          <option value="3">mochilas</option>
+
+          <option value="4">riñonera</option>
+        </select>
+
+        <button>Agregar</button>
+      </form>
     </main>
 
+    <script>
+      let lista = $(".input-div");
+      for (const e of lista) {
+        let children = e.children;
+        let input = children[0];
+        let label = children[1];
+        $(input).on("focus", () => {
+          $(label).addClass("focussed");
+          console.log("3ehuqweghiwq");
+        });
+        $(input).on("blur", () => {
+          if (!$.trim($(input).val())) {
+            $(label).removeClass("focussed");
+          }
+        });
+      }
+    </script>
     {% endblock %}
-</body>
+  </body>
 </html>
-
-

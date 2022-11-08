@@ -31,7 +31,7 @@
   width: 7px;
 }
 .main-cart .products::-webkit-scrollbar-thumb {
-  background: red;
+  background: #000;
 }
 .main-cart .products .product {
   border-radius: 10px;
@@ -58,6 +58,7 @@
   background: rgb(216, 22, 22);
   border: none;
   outline: none;
+  
 }
 .main-cart .details {
   height: 64px;

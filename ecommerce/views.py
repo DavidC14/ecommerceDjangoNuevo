@@ -1,3 +1,4 @@
+from msilib.schema import Error
 import re
 from unittest import result
 from django.core.mail import send_mail
@@ -14,7 +15,7 @@ from ecommerce import models
 import operator
 
 
-@login_required
+
 def paypal(request):
     total = 0
     prods = carrito.objects.all()
@@ -38,10 +39,13 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             try:
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+                # print(user)
                 user.save()
-                login(request, user)
-                return redirect('/')
+                # print("HASTA ACA LLEGAJAJAJ")
+                # login(request, user)
+                return redirect('/signin/')
             except:
+                
                 return render(request, 'signup.html',{
                     'form' : UserCreationForm,
                     'error': 'Usuario existente'
@@ -242,7 +246,7 @@ def eliminarPedido(request, pedido):
     if request.method == 'POST':
 
         venta.delete()
-    return redirect('/')
+    return redirect('/datos/')
 
 @login_required
 def delete_all(request):

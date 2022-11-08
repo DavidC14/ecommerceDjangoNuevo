@@ -1,32 +1,77 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    
+  </head>
+  <body>
     {% block content %}
-    <main>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'preCompra.css' %}" />
+    <main class="main-precompra">
+      <form action="/paypal/" method="POST" class="form-precompra">
+        {% csrf_token %}
+        <h1>Datos</h1>
 
-        <form action="{% url 'paypal' %}" method="POST">
-            {% csrf_token %}
-            {{form}}
-            
-            <button>
-                Pagar
-            </button>
-            
-        </form>
-    </main>   
+        <div class="input-div">
+          <input
+            type="text"
+            name="nombre"
+            maxlength="60"
+            required=""
+            id="id_nombre"
+            autocomplete="off"
+          />
+          <label for="id_nombre">Nombre</label>
+        </div>
+
+        <div class="input-div">
+          <input
+            type="text"
+            name="apellido"
+            maxlength="60"
+            required=""
+            id="id_apellido"
+            autocomplete="off"
+          />
+          <label for="id_apellido">Apellido</label>
+        </div>
+        <div class="input-div">
+          <input type="number" name="DNI" required="" id="id_DNI" />
+          <label for="id_DNI">Dni</label>
+        </div>
+
+        <div class="input-div">
+          <input type="number" name="telefono" required="" id="id_telefono" />
+          <label for="id_telefono">Telefono</label>
+        </div>
+
+        <button>Pagar</button>
+      </form>
+    </main>
+
+    <script>
+      let lista = $(".input-div");
+      for (const e of lista) {
+        let children = e.children;
+        let input = children[0];
+        let label = children[1];
+        $(input).on("focus", () => {
+          $(label).addClass("focussed");
+        });
+        $(input).on("blur", () => {
+          if (!$.trim($(input).val())) {
+            $(label).removeClass("focussed");
+          }
+        });
+      }
+    </script>
+
     {% endblock content %}
-        
-</body>
+  </body>
 </html>

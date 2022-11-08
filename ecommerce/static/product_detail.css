@@ -29,7 +29,7 @@
   flex-direction: column;
   justify-content: center;
 }
-.main-product .product-box .info .product-img {
+.main-product .product-box .product-img {
   width: 400px;
 }
 .main-product .product-box .info .product-price {
@@ -84,18 +84,26 @@
   height: 60%;
 }
 .main-product .product-box .info .switchstock button {
-  width: 50%;
-  font-size: 20px;
+  width: 90%;
+  font-size: 30px;
   border: none;
   outline: none;
+  cursor: pointer;
+
 }
 .main-product .product-box .info .switchstock button.nohay {
   background: rgb(138, 2, 2);
   color: white;
 }
+.main-product .product-box .info .switchstock button.nohay:hover{
+  box-shadow: rgb(138, 2, 2);
+}
 .main-product .product-box .info .switchstock button.sihay {
   background: rgb(9, 146, 238);
   color: white;
+}
+.main-product .product-box .info .switchstock button.sihay:hover{
+  background: rgb(9, 146, 238);
 }
 .main-product .product-box .info .buttons {
   height: 100%;
@@ -119,6 +127,7 @@
 }
 .main-product .product-box .info .buttons .addproduct button {
   background: #000;
+  cursor: pointer;
   color: #fff;
   border: none;
   outline: none;
