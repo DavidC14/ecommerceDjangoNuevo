@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="product_detail.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="main-product">
+      <div class="product-box">
+        <img src="bolso.png" alt="bolso img" class="product-img" />
+        <div class="info">
+          <h3 class="product-title">Titulo</h3>
+          <p class="product-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+            optio ipsam libero fugiat fugit corrupti obcaecati aliquam dolorum,
+            officiis cum excepturi rerum neque sed consectetur. Obcaecati
+            veritatis eveniet ab libero.
+          </p>
+          <span class="product-price">$15.3</span>
+
+          <p class="noStock">No hay stock</p>
+
+          <form
+            action="{% url 'delete_prod' data.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button><img src="delete.svg" alt="deletebutton"></button>
+          </form>
+
+          <form
+            action="{% url 'update_stock' data.nom_prod %}"
+            method="POST"
+            class="switchstock"
+          >
+            <button class="nohay">No hay stock</button>
+            <button class="sihay">Hay stock</button>
+          </form>
+          <div class="buttons">
+            <form action="{% url 'addCart' data.nom_prod %}" class="addproduct">
+              <input type="number" name="cant" id="cant" min="1" max="10" />
+
+              <button>Agregar al carrito</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

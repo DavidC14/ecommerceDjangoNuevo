@@ -1,68 +1,66 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-    
-    
+  </head>
+  <body>
     {% block content %}
-    <main>
-       
-        <div >
-            <img src="{{data.thumbnail.url}}" alt="" class="imagen_buy">
-            <p>{{error}}</p>
-            <p>{{data.nom_prod}}</p>
-            <p>${{data.precio_prod}}</p>
-            <p>{{data.descripcion}}</p>
+
+    <link rel="stylesheet" href="{% static 'product_detail.css'%}" />
+
+    <main class="main-product">
+      <div class="product-box">
+        <img src="{{data.thumbnail.url}}" alt="bolso img" class="product-img" />
+        <div class="info">
+          <h3 class="product-title">{{data.nom_prod}}</h3>
+          <p class="product-description">{{data.descripcion}}</p>
+          <span class="product-price">${{data.precio_prod}}</span>
+
+          {% if user.is_staff %}
+          <form
+            action="{% url 'delete_prod' data.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            {% csrf_token %}
+            <button><img src="{% static 'delete.svg'%}" alt="deletebutton" /></button>
+          </form>
+
+          <form
+            action="{% url 'update_stock' data.nom_prod %}"
+            method="POST"
+            class="switchstock"
+          >
+            {% csrf_token %}
             {% if data.hayStock %}
-                <form action="{% url 'addCart' data.nom_prod %}">
-                    {% csrf_token %}
-                    <input type="number" name="cant" id="cant" min="1" max="10">
-                    
-                    <button>
-                        Agregar al carrito
-                    </button>
-                </form>
+            <button class="nohay">No hay stock</button>
             {% else %}
-                <p>No hay stock</p>
+            <button class="sihay">Hay stock</button>
             {% endif %}
-            
-            {% if user.is_staff %}
-            <form action="{% url 'delete_prod' data.nom_prod %}" method="POST">
-                {% csrf_token %}
-                <button>
-                    Borrar
-                </button>
-            </form>
+          </form>
+          {% endif %}
+          {% if data.hayStock %}
+          <div class="buttons">
+            <form action="{% url 'addCart' data.nom_prod %}" class="addproduct">
+              {% csrf_token %}
+              <input type="number" name="cant" id="cant" min="1" max="10" />
 
-            <form action="{% url 'update_stock' data.nom_prod %}" method='POST'>
-                {% csrf_token %}
-                {% if data.hayStock %}
-                    <button>No hay stock</button>
-                {% else %}
-                    <button>Hay stock</button>
-                {% endif %}
+              <button>Agregar al carrito</button>
             </form>
-            
-            {% endif %}
-            
-            
-            
+          </div>
+
+          {% else %}
+          <p class="noStock">No hay stock</p>
+          {% endif %}
         </div>
-    
-        
+      </div>
     </main>
-    {% endblock %}
-    
 
-</body>
+    {% endblock %}
+  </body>
 </html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="addToCart.css" />
+  </head>
+  <body>
+    <main class="main-cart">
+      <div class="products">
+        <div class="product">
+          <img src="bolso.png" alt="bolso" class="product-img" />
+          <p class="product-name">Nombre</p>
+          <p class="product-cant">Cantidad: 55</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button>Borrar</button>
+          </form>
+        </div>
+        <div class="product">
+          <img src="bolso.png" alt="bolso" class="product-img" />
+          <p class="product-name">Nombre</p>
+          <p class="product-cant">Cantidad: 55</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button>Borrar</button>
+          </form>
+        </div>
+        <div class="product">
+          <img src="bolso.png" alt="bolso" class="product-img" />
+          <p class="product-name">Nombre</p>
+          <p class="product-cant">Cantidad: 55</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button>Borrar</button>
+          </form>
+        </div>
+        <div class="product">
+          <img src="bolso.png" alt="bolso" class="product-img" />
+          <p class="product-name">Nombre</p>
+          <p class="product-cant">Cantidad: 55</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button>Borrar</button>
+          </form>
+        </div>
+        <div class="product">
+          <img src="bolso.png" alt="bolso" class="product-img" />
+          <p class="product-name">Nombre</p>
+          <p class="product-cant">Cantidad: 55</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button>Borrar</button>
+          </form>
+        </div>
+        <div class="product">
+          <img src="bolso.png" alt="bolso" class="product-img" />
+          <p class="product-name">Nombre</p>
+          <p class="product-cant">Cantidad: 55</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button>Borrar</button>
+          </form>
+        </div>
+        <div class="product">
+          <img src="bolso.png" alt="bolso" class="product-img" />
+          <p class="product-name">Nombre</p>
+          <p class="product-cant">Cantidad: 55</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button>Borrar</button>
+          </form>
+        </div>
+        <div class="product">
+          <img src="bolso.png" alt="bolso" class="product-img" />
+          <p class="product-name">Nombre</p>
+          <p class="product-cant">Cantidad: 55</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+            <button>Borrar</button>
+          </form>
+        </div>
+      </div>
+      <div class="details">
+
+          <p class="totalvalue">Total: <span>$50</span></p>
+          <form action="{% url 'delete_all' %}" method="POST" class="emptycart">
+            <button>Vaciar carrito</button>
+          </form>
+          <form action="{% url 'preCompra' %}" class="buy">
+            <button>Ir a comprar</button>
+          </form>
+      </div>
+      <!-- <h1>EL CARRITO ESTA VACIO</h1> -->
+    </main>
+  </body>
+</html>

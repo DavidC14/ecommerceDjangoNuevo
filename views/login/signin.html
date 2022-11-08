@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="singin.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <main class="main-singin">
+        <!-- <h1>Sign In</h1> -->
+
+        <form action="/signin/" method="POST" class="form-singin">
+
+            <img src="profile.svg" alt="profile img" class="profile-img">
+            <div class="input-div">
+                <img src="user.svg" alt="">
+                <input placeholder="Username" type="text" name="username" id="username" autocomplete="off">
+            </div>
+            <div class="input-div">
+
+                <img src="lock.svg" alt="">
+                <input placeholder="Password" type="password" name="password" id="password" autocomplete="off">
+            </div>
+
+
+            <button>
+                Iniciar Sesion
+            </button>
+            <a href="{% provider_login_url 'google' %}" class="google-btn">
+                <img src="google.png" alt="Google Image">
+                <span>Sign in with Google</span>
+            </a>
+        </form>    
+    </main>
+
+</body>
+</html>

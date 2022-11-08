@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+.main-singin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+.main-singin .form-singin {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-singin .form-singin .profile-img {
+  width: 200px;
+  margin: 20px;
+}
+.main-singin .form-singin .input-div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  outline: 1px solid #000;
+  margin: 5px;
+}
+.main-singin .form-singin .input-div img {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 37px;
+  border-right: 1px solid gray;
+}
+.main-singin .form-singin .input-div input {
+  font-size: 25px;
+  padding: 5px;
+  padding-left: 15px;
+  border: none;
+  outline: none;
+}
+.main-singin .form-singin button {
+  width: 100%;
+  font-size: 30px;
+  background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+  padding: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.main-singin .form-singin button:hover {
+  box-shadow: 0 0 5px #000;
+}
+.main-singin .google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 10px;
+  padding: 5px;
+  width: 100%;
+  background: rgb(10, 116, 253);
+  text-decoration: none;
+}
+.main-singin .google-btn:hover {
+  box-shadow: 0 0 5px rgb(10, 116, 253);
+}
+.main-singin .google-btn img {
+  height: 32px;
+}
+.main-singin .google-btn span {
+  color: white;
+  font-size: 30px;
+}
+
+@media (min-width: 768px) {
+  .main-singin .form-singin {
+    box-shadow: 0 0 15px #000;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+}/*# sourceMappingURL=singin.css.map */

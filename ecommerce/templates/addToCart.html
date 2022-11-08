@@ -1,50 +1,49 @@
-{% extends 'base.html' %}
-{% load static %}
-
+{% extends 'base.html' %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    
+  </head>
+  <body>
     {% block content %}
-    <main>
-
+    <link rel="stylesheet" href="{% static 'addToCart.css' %}" />
+    <main class="main-cart">
+      {% if total != 0%}
+      <div class="products">
         {% for prod in prods %}
-            <img src={{prod.foto.url}} alt="" class="imagen_buy">
-            <p>{{prod.nom_prod}}</p>
-            <p>{{prod.cant_prod}}</p>
-            <form action="{% url 'deleteFromCart' prod.nom_prod %}" method="POST">
-                {% csrf_token %}
-                <button>
-                    Borrar
-                </button>
-            </form>
+        <div class="product">
+          <img src={{prod.foto.url}} alt="bolso" class="product-img" />
+          <p class="product-name">{{prod.nom_prod}}</p>
+          <p class="product-cant">Cantidad: {{prod.cant_prod}}</p>
+          <form
+            action="{% url 'deleteFromCart' prod.nom_prod %}"
+            method="POST"
+            class="deleteproduct"
+          >
+          {% csrf_token %}
+            <button>Borrar</button>
+          </form>
+        </div>
         {% endfor %}
-        {% if total != 0%}
-            <p>Total: {{total}}</p> 
-            <form action="{% url 'delete_all' %}" method="POST">
-                {% csrf_token %}
-                <button>Vaciar carrito</button>
-            </form>
-            <form action="{% url 'preCompra' %}">
-
-                <button>
-                    Siguiente
-                </button>
-            </form>
-        {% else %}
-            <h1>EL CARRITO ESTA VACIO</h1>
-        {% endif %}
-
+      </div>
+      <div class="details">
+        <p class="totalvalue">Total: <span>${{total}}</span></p>
+        <form action="{% url 'delete_all' %}" method="POST" class="emptycart">
+          {% csrf_token %}
+          <button>Vaciar carrito</button>
+        </form>
+        <form action="{% url 'preCompra' %}" class="buy">
+          <button>Ir a comprar</button>
+        </form>
+      </div>
+      {% else %}
+      <h1>EL CARRITO ESTA VACIO</h1>
+      {% endif %}
     </main>
-    {% endblock content %}
-        
-</body>
-</html>
 
+    {% endblock content %}
+  </body>
+</html>

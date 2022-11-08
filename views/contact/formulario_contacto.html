@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="contacto.css" />
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Contacto</title>
+  </head>
+  <body>
+    <main class="main-contact">
+        
+        <form action="" class="contact-form">
+          <h1 class="contact-title">Contacto</h1>
+            <div class="input-div">
+          <input type="text" name="asunto" id="asunto" autocomplete="off" />
+          <label for="asunto">Asunto</label>
+        </div>
+        <div class="input-div">
+          <input type="email" name="email" id="email" autocomplete="off" />
+          <label for="email">Email</label>
+        </div>
+        <div class="input-div">
+            <textarea name="mensaje" id="mensaje" cols="30" rows="10"> </textarea>
+            <label for="mensaje">Mensaje</label>
+        </div>
+
+        <input type="button" value="Enviar" />
+      </form>
+    </main>
+  </body>
+
+  <script>
+    let lista = $(".input-div");
+    for (const e of lista) {
+      let children = e.children;
+      let input = children[0];
+      let label = children[1];
+      $(input).on("focus", () => {
+        $(label).addClass("focussed");
+      });
+      $(input).on("blur", () => {
+        if (!$.trim($(input).val())) {
+          $(label).removeClass("focussed");
+        }
+      });
+    }
+  </script>
+</html>

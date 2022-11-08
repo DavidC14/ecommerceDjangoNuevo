@@ -34,26 +34,27 @@
       </div>
 
       <div class="products">
-        {% for product in products %} {% if product.hayStock %}
+        {% for product in products %} 
+        {% if product.hayStock %}
 
         <a href="{% url 'product_detail' product.id  %}" class="product_card">
           <img src="{{product.thumbnail.url}}" alt="" />
           <span class="product">{{product}}</span>
-          <p>${{product.precio_prod}}</p>
+          <p style="color: green; font-size: 20px;">${{product.precio_prod}}</p>
         </a>
 
         {% else %} {% if user.is_staff %}
         <a href="{% url 'product_detail' product.id  %}" class="product_card">
           <img src="{{product.thumbnail.url}}" alt="" class="imagen_buy" />
           <span class="product">{{product}}</span>
-          <p>${{product.precio_prod}}</p>
+          <p style="color: green; font-size: 20px;">${{product.precio_prod}}</p>
         </a>
         {% else %}
-        <div>
-          <img src="{{product.thumbnail.url}}" alt="" class="imagen_buy" />
+        <div class="product_card">
+          <img src="{{product.thumbnail.url}}" alt=""  />
           <span class="product">{{product}}</span>
-          <p>${{product.precio_prod}}</p>
-          <p>NO HAY STOCK</p>
+          <p style="color: green; font-size: 20px;">${{product.precio_prod}}</p>
+          <p style="color: red;">NO HAY STOCK</p>
         </div>
         {% endif %} 
         {% endif %} 

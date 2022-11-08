@@ -1,0 +1,57 @@
+<!-- {% load static %} -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="base.css" />
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Buy</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar__hamburguer">
+        <input type="checkbox" id="hamburguerCheck" />
+        <span class="hamburguer">☰</span>
+        <ul class="navbar__dropdownMenu hide" id="dropdown">
+          <!-- {% if user.is_staff %} -->
+          <li class="rojo">
+            <a href="{% url 'addStock' %}">Agregar producto</a>
+          </li>
+          <li class="rojo2">
+            <a href="{% url 'verPedidos' %}">Ver pedidos</a>
+          </li>
+          <!-- {% endif %} -->
+
+          <li class="naranja"><a href="{% url 'buy' %}">STOCK</a></li>
+          <li class="amarillo"><a href="{% url 'cart' %}">CARRITO</a></li>
+
+          <!-- {% if user.is_authenticated %} -->
+          <li class="verde"><a href="{% url 'logout' %}">LOG OUT</a></li>
+          <!-- {% else %} -->
+          <li class="celeste"><a href="{% url 'signup' %}">SIGN UP</a></li>
+          <li class="azul"><a href="{% url 'signin' %}">SIGN IN</a></li>
+          <!-- {% endif %} -->
+
+          <li class="violeta"><a href="{% url 'contacto' %}">CONTACT</a></li>
+          <li class="rosa"><a href="{% url 'contacto' %}">ABOUT US</a></li>
+        </ul>
+      </div>
+      <h1 class="navbar__title">BAGUAL</h1>
+    </nav>
+
+    <script>
+      let status = true;
+
+      $("#hamburguerCheck").on("change", () => {
+        status = !status;
+        if (status) {
+          $("#dropdown").addClass("hide");
+        } else {
+          $("#dropdown").removeClass("hide");
+        }
+      });
+    </script>
+  </body>
+</html>
