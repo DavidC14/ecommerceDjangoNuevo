@@ -1,71 +1,67 @@
-{% extends 'base.html' %}
-{% load static %}
-
+{% extends 'base.html' %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    
-    
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'buy.css' %}" />
+    <title>STOCK</title>
+  </head>
+  <body>
     {% block content %}
-    <main>
-        <p>Filtrar</p>
-        {% for cat in categorias %}
+    <link rel="stylesheet" href="{% static 'buy.css' %}" />
+    <main class="main-buy">
+      <div class="main-filter-div">
+        <ul class="main-filter-ul">
+          <li>
+            <span>Filtrar:</span>
+          </li>
+          {% for cat in categorias %}
+          <li>
             <form action="{% url 'filtrar' cat.id %}" method="POST">
-                {% csrf_token %}
-                <a href="{% url 'filtrar' cat.id %}">{{cat}}</a>
-
+              {% csrf_token %}
+              <a href="{% url 'filtrar' cat.id %}" style="text-transform: uppercase;">{{cat}}</a>
             </form>
-        {% endfor %}
-        {% for product in products %}
-        {% if product.hayStock %}
-            
+          </li>
+          {% endfor %}
+        </ul>
 
-            <a href="{% url 'product_detail' product.id  %}" class="product_card">
-                
-                <img src={{product.thumbnail.url}} alt="" class="imagen_buy">
-                <p class="product">{{product}}</p>
-                <p>${{product.precio_prod}}</p>
-            
-                
-                
-                
-            </a>
+        <div class="searchbar">
+          <input type="text" />
+          <button><img src="{% static 'search.svg' %}" alt="" /></button>
+        </div>
+      </div>
 
+      <div class="products">
+        {% for product in products %} {% if product.hayStock %}
 
+        <a href="{% url 'product_detail' product.id  %}" class="product_card">
+          <img src="{{product.thumbnail.url}}" alt="" />
+          <span class="product">{{product}}</span>
+          <p>${{product.precio_prod}}</p>
+        </a>
+
+        {% else %} {% if user.is_staff %}
+        <a href="{% url 'product_detail' product.id  %}" class="product_card">
+          <img src="{{product.thumbnail.url}}" alt="" class="imagen_buy" />
+          <span class="product">{{product}}</span>
+          <p>${{product.precio_prod}}</p>
+        </a>
         {% else %}
-            {% if user.is_staff %}
-                <a href="{% url 'product_detail' product.id  %}" class="product_card">          
-                    <img src={{product.thumbnail.url}} alt="" class="imagen_buy">
-                    <p class="product">{{product}}</p>
-                    <p>${{product.precio_prod}}</p>
-                </a>
-            {% else %}
-                <div>
-                    <img src={{product.thumbnail.url}} alt="" class="imagen_buy">
-                    <p class="product">{{product}}</p>
-                    <p>${{product.precio_prod}}</p>
-                    <p>NO HAY STOCK</p>
-                </div>
-            {% endif %}
-
-
-        {% endif %}
-
-
-
+        <div>
+          <img src="{{product.thumbnail.url}}" alt="" class="imagen_buy" />
+          <span class="product">{{product}}</span>
+          <p>${{product.precio_prod}}</p>
+          <p>NO HAY STOCK</p>
+        </div>
+        {% endif %} 
+        {% endif %} 
         {% endfor %}
-        
-    </main>
-    {% endblock %}
-    
 
-</body>
+      </div>
+    </main>
+
+    {% endblock %}
+  </body>
 </html>
