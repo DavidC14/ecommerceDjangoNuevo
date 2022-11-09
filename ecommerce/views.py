@@ -293,8 +293,8 @@ def cart(request):
     
 @login_required 
 def deleteFromCart(request, prod):
-    
-    product = get_object_or_404(carrito, nom_prod=prod)
+ 
+    product = carrito.objects.filter(user = request.user).get(nom_prod=prod)
     if request.method == 'POST':
         product.delete()
         return redirect('cart')
