@@ -26,9 +26,10 @@
             action="{% url 'delete_prod' data.nom_prod %}"
             method="POST"
             class="deleteproduct"
+            style="cursor: pointer;"
           >
             {% csrf_token %}
-            <button><img src="{% static 'delete.svg'%}" alt="deletebutton" /></button>
+            <button style="cursor: pointer;"><img src="{% static 'delete.svg'%}" alt="deletebutton" /></button>
           </form>
 
           <form

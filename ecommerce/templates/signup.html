@@ -21,20 +21,20 @@
             </div>
             <div class="input-div">
                 <img src="{% static 'lock.svg' %}" alt="">
-                <input placeholder="Password" type="text" name="password1" id="password1" autocomplete="off">
+                <input placeholder="Password" type="password" name="password1" id="password1" autocomplete="off">
             </div>
             <div class="input-div">
                 <img src="{% static 'lock.svg' %}" alt="">
-                <input placeholder="Confirm Password" type="text" name="password2" id="password2" autocomplete="off">
+                <input placeholder="Confirm Password" type="password" name="password2" id="password2" autocomplete="off">
             </div>
             <button>
                 SIGN UP
             </button>
         </form>
-       
+        {% if error %}
         <span style="position: absolute;color: red;
         top: 20px; outline: 1px solid red; border-radius: 10px; padding: 10px;">{{error}}</span>
-       
+       {% endif %}
     </main>
 
         

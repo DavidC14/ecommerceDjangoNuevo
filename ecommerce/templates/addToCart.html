@@ -15,7 +15,7 @@
       <div class="products">
         {% for prod in prods %}
         <div class="product">
-          <img src={{prod.foto.url}} alt="bolso" class="product-img" />
+          <img src="{{prod.foto.url}}" alt="bolso" class="product-img" />
           <p class="product-name">{{prod.nom_prod}}</p>
           <p class="product-cant">Cantidad: {{prod.cant_prod}}</p>
           <form
@@ -23,7 +23,7 @@
             method="POST"
             class="deleteproduct"
           >
-          {% csrf_token %}
+            {% csrf_token %}
             <button>Borrar</button>
           </form>
         </div>
@@ -33,10 +33,34 @@
         <p class="totalvalue">Total: <span>${{total}}</span></p>
         <form action="{% url 'delete_all' %}" method="POST" class="emptycart">
           {% csrf_token %}
-          <button>Vaciar carrito</button>
+          <button
+            style="
+              display: flex;
+              gap: 5px;
+              height: 40px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img src="{% static 'delete.svg' %}" alt="" style="height: 20px" />
+            Vaciar carrito
+          </button>
         </form>
         <form action="{% url 'preCompra' %}" class="buy">
-          <button>Ir a comprar</button>
+          <button
+            style="
+              display: flex;
+              gap: 5px;
+              height: 40px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+          <img src="{% static 'cart.svg' %}" alt="" style="height: 30px">
+            Ir a comprar
+          </button>
         </form>
       </div>
       {% else %}

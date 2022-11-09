@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="pedidosTotales.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- {% block content %} -->
+
+    <main class="main-pedidos">
+      <!-- {% for pedido in pedidos %} -->
+      <div class="pedidos">
+        <div class="cardPedido">
+          <p class="name">Nombre: {{pedido.nombre}}</p>
+          <p class="dni">DNI: {{pedido.DNI}}</p>
+          <p class="tel">Telefono: {{pedido.telefono}}</p>
+          <p class="total">Total: <span>${{pedido.total}}</span></p>
+          <form action="{% url 'eliminarPedido' pedido.id %}" method="POST">
+            <!-- {% csrf_token %} -->
+            <button>Eliminar</button>
+          </form>
+        </div>
+        
+      </div>
+      <!-- {% endfor %} -->
+
+      <div class="details">
+        <p class="usuarios">Usuarios totales: <span>{{totalCliente}}</span></p>
+        <!-- {% if total != 0 %} -->
+        <p class="totalpedidos">Total pedidos: <span>{{total}}</span></p>
+        <p class="ganancia">Ganancia total: <span>${{ganancia}}</span></p>
+        <!-- {% else %} -->
+        <!-- <h1>NO HAY PEDIDOS</h1> -->
+        <!-- {% endif %} -->
+      </div>
+    </main>
+
+    <!-- {% endblock content %} -->
+  </body>
+</html>

@@ -272,9 +272,13 @@
 @media (max-width: 768px) {
   .landing-main h1 {
     font-size: 60px;
+    /* background: red; */
     letter-spacing: 20px;
   }
   .landing-grilla-menu {
     grid-template-areas: "stock" "stock" "stock" "singup" "login" "contact" "about";
+    
+    /* grid-template-rows: 3fr repeat(4, 1fr); */
+    /* background: red; */
   }
 }/*# sourceMappingURL=home.css.map */

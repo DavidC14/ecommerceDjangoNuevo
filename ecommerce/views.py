@@ -29,6 +29,9 @@ def paypal(request):
 
 def home(request):
     return render(request, 'home.html')
+
+def aboutus(request):
+    return render(request, 'aboutus.html')
     
 def signup(request):
     if request.method == 'GET':
