@@ -347,11 +347,7 @@ def eliminarPedido(request, pedido):
     if request.method == 'POST':
 
         venta.delete()
-<<<<<<< HEAD
-    return redirect('/datos/')
-=======
     return redirect('verPedidos')
->>>>>>> 8ac46100f40ecdc8c27bddcc97ddd03498cd9b72
 
 @login_required
 def delete_all(request):
