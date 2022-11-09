@@ -106,6 +106,8 @@
 .main-buy .products .product_card img {
   border-radius: 10px 10px 0 0;
   width: 300px;
+  height: 300px;
+  object-fit: contain;
 }
 .main-buy .products .product_card span {
   display: block;
