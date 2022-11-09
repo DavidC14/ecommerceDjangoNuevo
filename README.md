@@ -42,3 +42,8 @@
 - Integrar de mejor manera en el backend el formato de pago con paypal para que cuando se efectue la transaccion, los datos de la misma se almacenen en la base de datos.
 - Poder añadir mas imagenes a un producto
 - Agregar mas informacion a los productos
+
+## Super Usuario:
+- Nombre: `facundoare`
+- Contraseña: `1234`
+
