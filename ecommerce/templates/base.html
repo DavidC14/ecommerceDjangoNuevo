@@ -27,7 +27,6 @@
           <li class="naranja"><a href="{% url 'buy' %}">STOCK</a></li>
           <li class="amarillo"><a href="{% url 'cart' %}">CARRITO</a></li>
 
-<<<<<<< HEAD
           {% if user.is_authenticated %}
           <li class="verde"><a href="{% url 'logout' %}">LOG OUT</a></li>
           {% else %}
@@ -37,29 +36,6 @@
 
           <li class="violeta"><a href="{% url 'contacto' %}">CONTACT</a></li>
           <li class="rosa"><a href="{% url 'aboutus' %}">ABOUT US</a></li>
-=======
-            
-            {% if user.is_staff %}
-                <li class="base_li"><a href="{% url 'addStock' %}" class="base_a">Agregar producto</a></li>
-                <li class="base_li"><a href="{% url 'verPedidos' %}" class="base_a">Ver pedidos</a></li>
-            {% endif %}
-                <li class="base_li"><a href="{% url 'buy' %}" class="base_a">Comprar</a></li>
-                <li class="base_li"><a href="{% url 'cart' %}" class="base_a">Carrito</a></li>
-
-            {% if user.is_authenticated %}
-                <li class="base_li"><a href="{% url 'logout' %}" class="base_a">Cerrar sesion</a></li>
-            {% else %}
-                <li class="base_li"><a href="{% url 'signup' %}" class="base_a">Registrarse</a></li>
-                <li class="base_li"><a href="{% url 'signin' %}" class="base_a">Iniciar Sesión</a></li>
-            {% endif %}
-             
-                <li class="base_li"><a href="{% url 'contacto' %}" class="base_a">Contacto</a></li>
-            
-                <div class="user_data">
-                    <p class="username_user">{{user.username}} {{user.last_name}}</p>
-                    <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" alt="" class="user_logo">
-                </div>
->>>>>>> 8ac46100f40ecdc8c27bddcc97ddd03498cd9b72
         </ul>
       </div>
       <a href="/" style="color: #000; text-decoration: none; user-select: none;"><h1 class="navbar__title">BAGUAL</h1></a>
@@ -68,7 +44,6 @@
     {% block content %}
     {% endblock %}
 
-<<<<<<< HEAD
 
     <script>
       let status = true;
@@ -84,13 +59,3 @@
     </script>
   </body>
 </html>
-=======
-    {% if user.is_authenticated %}
-        <li><a href="">Cerrar sesion</a></li>
-    {% else %}
-        <li><a href="">Registrarse</a></li>
-        <li><a href="">Iniciar Sesión</a></li>
-    {% endif %}
-</body>
-</html>
->>>>>>> 8ac46100f40ecdc8c27bddcc97ddd03498cd9b72

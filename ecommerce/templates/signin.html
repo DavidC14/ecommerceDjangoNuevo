@@ -35,15 +35,10 @@
                 <span>Sign in with Google</span>
             </a>
         </form>    
-<<<<<<< HEAD
         {% if error %}
         <span style="position: absolute;color: red;
         top: 20px; outline: 1px solid red; border-radius: 10px; padding: 10px;">{{error}}</span>
         {% endif %}
-=======
-        <a href="{% provider_login_url 'google' %}">Google</a>
-        <p>Si no tienes una cuenta<a href="{% url 'signup' %}">registrate</a></p>
->>>>>>> 8ac46100f40ecdc8c27bddcc97ddd03498cd9b72
     </main>
 
 </body>
