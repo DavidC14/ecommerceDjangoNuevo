@@ -14,6 +14,10 @@ from . import forms
 from ecommerce import models
 import operator
 
+from paypalcheckoutsdk.core import PayPalHttpClient, SandboxEnvironment
+from paypalcheckoutsdk.orders import OrdersGetRequest , OrdersCaptureRequest
+import sys, json
+
 
 
 def paypal(request):
@@ -26,6 +30,100 @@ def paypal(request):
     return render(request, 'paypal.html',{
         'total':total
     })
+
+
+
+# def pago(request):
+#     data = json.loads(request.body)
+#     order_id = data['orderID']
+#     detalle = GetOrder().get_order(order_id)
+#     detalle_precio = float (detalle.result.purchase_units[0].amount.value)
+#     print(detalle_precio)
+
+#     trx = CaptureOrder().capture_order(order_id, debug=True)
+#     pedido = models.Compra(
+#         id= trx.result.id,
+#         estado= trx.result.status,
+#         codigo_estado= trx.status_code,
+#         nombre_cliente= trx.result.payer.name.given_name,
+#         apellido_cliente= trx.result.payer.name.surname,
+#         correo_cliente= trx.result.payer.email_address,
+#         direccion_cliente= trx.result.purchase_units[0].shipping.address.address_line_1)
+#     pedido.save()
+#     data = {
+#         "id": f"{trx.result.id}",
+#         "nombre_cliente": f"{trx.result.payer.name.given_name}"
+#     }
+#     return JsonResponse(data)
+
+
+
+# class PayPalClient:
+#     def __init__(self):
+#         self.client_id = "AZEr3NvMIdU0MhJt9Y0GNfb6BTP4FJyCWg6uOrV_QC9SK2QrgZMndjjdVknM-lfA5-J9LeRP4pKvhaCb"
+#         self.client_secret = "EJDECmbo4dasEyT4pj2ZwKrFhox1W_PlZ1AI8cQstgi9TkD9KHzUhppOvtS0mOJFOH3y5FLy8QRLd4vA"    
+#         self.environment = SandboxEnvironment(client_id=self.client_id, client_secret=self.client_secret)
+#         self.client = PayPalHttpClient(self.environment)
+#     def object_to_json(self, json_data):
+#         result = {}
+#         if sys.version_info[0] < 3:
+#             itr = json_data.__dict__.iteritems()
+#         else:
+#             itr = json_data.__dict__.items()
+#         for key,value in itr:
+#             if key.startswith("__"):
+#                 continue
+#             result[key] = self.array_to_json_arrray(value) if isinstance(value, list) else\
+#                         self.object_to_json(value) if not self.is_primittive(value) else\
+#                             value
+#         return result
+
+#     def array_to_json_array(self, json_array):
+#         result=[]
+#         if isinstance(json_array, list):
+#             for item in json_array:
+#                 result.append(self.object_to_json(item) if not self.is_primittive(item) \
+#                                 else self.array_to_json_array(item) if isinstance(item, list) else item)
+#         return result
+
+#     def is_primittive(self, data):
+#         return isinstance(data, str) or isinstance(data, unicode) or isinstance(data, int)
+
+# class GetOrder(PayPalClient):
+#   def get_order(self, order_id):
+#     request = OrdersGetRequest(order_id)
+#     response = self.client.execute(request)
+#     print('Status Code: ', response.status_code)                    
+#     print('Status: ', response.result.status)
+#     print ('Order ID: ', response. result.id)              
+#     print ('Intent: ', response. result. intent)                  
+#     print ('Links:')                                                
+#     for link in response.result.links:
+#         print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+#         print('Gross Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,response.result.purchase_units[0].amount.value))
+                        
+
+# class CaptureOrder (PayPalClient):
+#    def capture_order(self, order_id, debug=False):
+#      request = OrdersCaptureRequest(order_id)
+#      response = self.client.execute(request)
+#      if debug:
+#        print('Status Code: ', response.status_code)
+#        print('Status: ', response.result.status)
+#        print('Order ID: ', response.result.id)
+#        print('Links: ')
+#        for link in response.result.links:
+#             print('\t{}: {}\tCall Type: {}'.format(link.href, link.method))
+#        print('Capture Ids: ')
+#        for purchase_unit in response.result.purchase_units:
+#             for capture in purchase_unit.payments.captures:
+#                 print('\t', capture.id)
+#             print("Buyer:")
+#             print ("\tEmail Address: {}\n\tName: {}\n\tPhone Number: {}".format(response.result.payer.email_address,
+#                 response.result.payer.name.given_name + " " + response.result.payer.name.surname,
+#                 response.result.payer.phone.phone_number.national_number))
+#             return response
+
 
 def home(request):
     return render(request, 'home.html')
@@ -249,7 +347,11 @@ def eliminarPedido(request, pedido):
     if request.method == 'POST':
 
         venta.delete()
+<<<<<<< HEAD
     return redirect('/datos/')
+=======
+    return redirect('verPedidos')
+>>>>>>> 8ac46100f40ecdc8c27bddcc97ddd03498cd9b72
 
 @login_required
 def delete_all(request):
