@@ -17,8 +17,8 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 20px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
 }
@@ -89,5 +89,7 @@
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+    padding: 20px;
+    width: max-content;
   }
 }/*# sourceMappingURL=singin.css.map */
