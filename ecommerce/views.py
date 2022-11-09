@@ -18,7 +18,7 @@ import operator
 
 def paypal(request):
     total = 0
-    prods = carrito.objects.all()
+    prods = carrito.objects.all().filter(user = request.user)
     for prod in prods:
         total += prod.precio_prod
     if request.method == "POST":
@@ -132,14 +132,14 @@ def addCart(request, prod):
 
 
     product = get_object_or_404(stockProducts, nom_prod=prod)
-    products = carrito.objects.all()
+    products = carrito.objects.all().filter(user = request.user)
 
     for i in products:
         ArrayProductos.append(i.nom_prod)
 
     if cantidad:
         if product.nom_prod in ArrayProductos:
-            p = carrito.objects.get(nom_prod=prod)
+            p = carrito.objects.filter(user = request.user).get(nom_prod=prod)
             p.cant_prod += int(cantidad)
             p.precio_prod += p.precio_prod*int(cantidad)
             p.save()
@@ -179,7 +179,7 @@ def contacto(request):
 @login_required
 def cart(request):
     total = 0
-    prods = carrito.objects.all()
+    prods = carrito.objects.all().filter(user = request.user)
     for prod in prods:
         total += prod.precio_prod
     
@@ -250,7 +250,7 @@ def eliminarPedido(request, pedido):
 
 @login_required
 def delete_all(request):
-    prods = carrito.objects.all()
+    prods = carrito.objects.all().filter(user = request.user)
     if request.method == 'POST':
         prods.delete()
         return redirect('cart')
