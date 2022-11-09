@@ -81,7 +81,7 @@
 .main-contact .contact-form #mensaje {
   resize: none;
 }
-.main-contact .contact-form input[type=button] {
+.main-contact .contact-form input[type="submit"] {
   font-size: 30px;
   color: white;
   background: #000;

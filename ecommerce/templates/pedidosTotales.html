@@ -1,41 +1,44 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
     {% block content %}
+    <title>Pedidos</title>
+
+    <link rel="stylesheet" href="{% static 'pedidosTotales.css' %}" />
+    <main class="main-pedidos">
+      <div class="pedidos">
         {% for pedido in pedidos %}
-            <div class="cardPedido">
-                <p>{{pedido.nombre}}</p>
-                <p>{{pedido.DNI}}</p>
-                <p>{{pedido.telefono}}</p>
-                <p>{{pedido.total}}</p>
-                <form action="{% url 'eliminarPedido' pedido.id %}" method="POST">
-                    {% csrf_token %}
-                    <button>
-                        Eliminar
-                    </button>
-                </form>
-            </div>
+        <div class="cardPedido">
+          <p class="name">Nombre: {{pedido.nombre}}</p>
+          <p class="dni">DNI: {{pedido.DNI}}</p>
+          <p class="tel">Telefono: {{pedido.telefono}}</p>
+          <p class="total">Total: <span>${{pedido.total}}</span></p>
+          <form action="{% url 'eliminarPedido' pedido.id %}" method="POST">
+            {% csrf_token %}
+            <button>Eliminar</button>
+          </form>
+        </div>
         {% endfor %}
-        <p>Usuarios totales: {{totalCliente}}</p>
+      </div>
+
+      <div class="details">
+        <p class="usuarios">Usuarios totales: <span>{{totalCliente}}</span></p>
         {% if total != 0 %}
-            <p>Total pedidos: {{total}}</p>
-            <p>Ganancia total: {{ganancia}}</p>
+        <p class="totalpedidos">Total pedidos: <span>{{total}}</span></p>
+        <p class="ganancia">Ganancia total: <span>${{ganancia}}</span></p>
         {% else %}
-            <h1>NO HAY PEDIDOS</h1>
+        <h1>NO HAY PEDIDOS</h1>
         {% endif %}
+      </div>
+    </main>
+
     {% endblock content %}
-        
-</body>
+  </body>
 </html>

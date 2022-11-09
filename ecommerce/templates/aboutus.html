@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+  </head>
+  <body>
+    
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'aboutus.css' %}" />
+    
+    <main class="main-aboutus">
+      <div class="content">
+        <h1>About Us</h1>
+        <img src="{% static 'aboutus.svg' %}" alt="" />
+        <p>
+          Somos un grupo de 3 estudiantes de la E.T. 36 D.E. 15 y esta página es
+          nuestro proyecto informatico de 5to año. Elegimos hacer este ecommerce
+          para poder ayudar a la mama de los integrantes con su venta de bolsos.
+        </p>
+      </div>
+    </main>
+
+    
+    {% endblock content %}
+  </body>
+</html>

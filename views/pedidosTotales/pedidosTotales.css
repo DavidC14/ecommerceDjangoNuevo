@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins";
+}
+
+.main-pedidos {
+  padding-top: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.main-pedidos .pedidos {
+  background: white;
+  box-shadow: inset 0 0 5px #000, inset 0 0 10px #000;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  align-items: flex-start;
+  gap: 20px;
+  height: 70vh;
+  overflow-y: scroll;
+  padding: 20px;
+}
+.main-pedidos .pedidos::-webkit-scrollbar {
+  width: 7px;
+}
+.main-pedidos .pedidos::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 10px;
+}
+.main-pedidos .pedidos .cardPedido {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 20px;
+  box-shadow: inset 0 0 5px #000;
+  border-radius: 10px;
+}
+.main-pedidos .pedidos .cardPedido p {
+  padding: 5px 0 0 5px;
+}
+.main-pedidos .pedidos .cardPedido .total span {
+  color: green;
+}
+.main-pedidos .pedidos .cardPedido button {
+  width: 100%;
+  background: radial-gradient(#ff7070, #ff0000);
+  color: white;
+  font-size: 30px;
+  border: none;
+  border-radius: 0 0 10px 10px;
+}
+.main-pedidos .pedidos .cardPedido button:hover {
+  box-shadow: 0 0 5px red;
+  cursor: pointer;
+}
+.main-pedidos .details {
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+}
+.main-pedidos .details .usuarios span {
+  color: rgb(228, 15, 0);
+}
+.main-pedidos .details .totalpedidos span {
+  color: rgb(4, 104, 161);
+}
+.main-pedidos .details .ganancia span {
+  color: #008000;
+}
+
+@media (max-width: 1000px) {
+  .main-pedidos .pedidos {
+    grid-template-columns: repeat(2, 300px);
+  }
+  .details {
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .main-pedidos .pedidos {
+    grid-template-columns: repeat(1, 300px);
+  }
+  .details {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=pedidosTotales.css.map */
