@@ -1,4 +1,3 @@
-from msilib.schema import Error
 import re
 from unittest import result
 from django.core.mail import send_mail
